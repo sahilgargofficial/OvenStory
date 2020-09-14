@@ -1,0 +1,19 @@
+{
+  "name": "oven_story",
+  "version": "1.0.0",
+  "description": "Real time pizza Web app",
+  "main": "index.js",
+  "author": "sahilgargofficial",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "express-ejs-layouts": "^2.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "scripts": {
+    "start": "nodemon server.js"
+  }
+}
