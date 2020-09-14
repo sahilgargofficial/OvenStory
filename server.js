@@ -13,6 +13,8 @@ app.get('/', (req, res) => {
 app.use(expressLayouts);
 app.set('views', path.join(__dirname, '/resources/views'))
 app.set('view engine', 'ejs')
+app.use(express.static('public'))
+
 app.listen(PORT, () => {
     console.log(`app deployed on port ${PORT}`);
 })
