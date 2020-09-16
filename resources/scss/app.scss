@@ -1,6 +1,8 @@
 // Client Css code
 
 @import './variables';
+@import "~noty/src/noty";
+@import "~noty/src/themes/mint";
 
 body {
   font-family: 'Lato', sans-serif;
@@ -29,7 +31,6 @@ section.hero {
 
 .size {
   background: $secondary;
-  border: 1px solid $gray;
 }
 
 .add-to-cart {
@@ -40,6 +41,9 @@ section.hero {
     background: $primary;
     border-color: $pure;
     color:$pure;
+  }
+  &:focus {
+    outline: none;
   }
 }
 .btn-primary {
@@ -77,4 +81,9 @@ section.register {
       color:$primary-hover
     }
   }
+}
+.noty_theme__mint {
+  border-radius: 50px !important;
+  padding-left: 8px !important;
+  text-transform: capitalize !important;
 }

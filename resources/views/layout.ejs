@@ -12,7 +12,9 @@
 <body>
 <nav class="container mx-auto flex items-center justify-between py-4">
     <div>
-        <img src="/img/logo.png" alt="oven-story logo">
+        <a href="/">
+            <img src="/img/logo.png" alt="oven-story logo">
+        </a>
     </div>
     <div>
         <ul class="flex items-center">
@@ -20,7 +22,7 @@
                 <a href="">Menu</a>
             </li>
             <li class="ml-6">
-                <a href="">Offers</a>
+                <a href="/offers">Offers</a>
             </li>
             <li class="ml-6">
                 <a href="/register">Register</a>
@@ -29,8 +31,10 @@
                 <a href="/login">Login</a>
             </li>
             <li class="ml-6">
-                <a href="" class="inline-block px-4 py-2 rounded-full">
-                    <img src="/img/cart.png" alt="">
+                <a href="/cart" class="inline-block px-4 py-2 rounded-full flex items-center">
+                    <span id="cartCounter"
+                          class="text-white font-bold pr-2"><%= session.cart ? session.cart.totalQty : 0 %></span>
+                    <img src="/img/cart.png">
                 </a>
             </li>
         </ul>
