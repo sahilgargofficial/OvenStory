@@ -22,4 +22,4 @@ const menuSchema = new Schema({
 })
 
 // create model
-module.exports = mongoose.model('menus', menuSchema);
+module.exports = mongoose.model('pizza_menus', menuSchema);

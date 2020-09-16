@@ -1,31 +1,37 @@
 <section class="register flex justify-center pt-24">
     <div class="w-full max-w-xs">
-        <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" action="/register" method="post">
+            <% if (messages.error) { %>
+                <span class="text-md py-2 mb-1 block text-center border-red-700  text-red-500 border border-dashed capitalize font-bold"><%= messages.error %> ⚠</span>
+            <% } %>
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
                     Name
                 </label>
                 <input class="border rounded w-full py-2 px-3 border-gray-400"
-                       id="username" type="text" placeholder="Enter your name" minlength="3">
+                       id="username" type="text" placeholder="Enter your name" minlength="3" name="name"
+                       value="<%= messages.name %>">
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
                     Email
                 </label>
                 <input class="border rounded w-full py-2 px-3 border-gray-400"
-                       id="email" type="email" placeholder="Enter your email" minlength="3">
+                       id="email" type="email" placeholder="Enter your email" minlength="3" name="email"
+                       value="<%= messages.email %>">
             </div>
             <div class="mb-6">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
                     Password
                 </label>
                 <input class="border border-gray-400 rounded w-full py-2 px-3  mb-3" id="password" type="password"
-                       placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" minlength="8">
+                       placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" minlength="8"
+                       name="password" value="<%= messages.password %>">
             </div>
             <div class="flex items-center justify-between">
                 <button class="btn-primary rounded-full text-white font-bold py-2 px-6 rounded focus:outline-none"
-                        type="button">
-                    Sign In
+                        type="submit">
+                    Register
                 </button>
                 <a class="inline-block align-baseline font-bold text-sm" href="/login">
                     Already have account ?
