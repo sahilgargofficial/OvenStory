@@ -1,73 +1,65 @@
 require('dotenv').config()
 const express = require('express')
-const app = express();
-const PORT = process.env.port || 3000;
+const app = express()
+const ejs = require('ejs')
 const path = require('path')
-const expressLayouts = require('express-ejs-layouts');
-const session = require('express-session');
+const expressLayout = require('express-ejs-layouts')
+const PORT = process.env.PORT || 3300
+const mongoose = require('mongoose')
+const session = require('express-session')
 const flash = require('express-flash')
-const mongoose = require('mongoose');
 const MongoDbStore = require('connect-mongo')(session)
 const passport = require('passport')
 
 // Database connection
-const url = process.env.DATABASE_URL
-mongoose.connect(url, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true,
-    useFindAndModify: true
-})
+const url = process.env.DATABASE_URL;
+mongoose.connect(url, { useNewUrlParser: true, useCreateIndex:true, useUnifiedTopology: true, useFindAndModify : true });
 const connection = mongoose.connection;
 connection.once('open', () => {
-    console.log("Database Connected")
-}).catch(() => {
-    console.log("connection failed")
+    console.log('Database connected...');
+}).catch(err => {
+    console.log('Connection failed...')
 });
 
-// session store
+// Session store 
 let mongoStore = new MongoDbStore({
-    mongooseConnection: connection,
-    collection: 'pizza_sessions',
-})
-
-// sessions
+                mongooseConnection: connection,
+                collection: 'sessions'
+            })
+// Session config
 app.use(session({
     secret: process.env.COOKIE_SECRET,
-    resave: false,
+    resave: false, 
     store: mongoStore,
-    saveUninitialized: false,
-    cookie: {maxAge: 1000 * 60 * 60}  // 1 hr
-
+    saveUninitialized: false, 
+    cookie: { maxAge: 1000 * 60 * 60 * 24 } // 24 hour 
 }))
 
-// passport config after session
-const passportInit = require('./app/config/passport');
+// Passport config 
+const passportInit = require('./app/config/passport')
 passportInit(passport)
 app.use(passport.initialize())
 app.use(passport.session())
 
 app.use(flash())
-
+// Assets 
 app.use(express.static('public'))
-app.use(express.urlencoded({extended: false}))
+app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
-// Global middleware
+// Global middleware 
 app.use((req, res, next) => {
-    res.locals.session = req.session;
-    res.locals.user = req.user;
-    next();
+    res.locals.session = req.session
+    res.locals.user = req.user
+    next()
 })
-
-// set templating engine
-app.use(expressLayouts);
+// set Template engine
+app.use(expressLayout)
 app.set('views', path.join(__dirname, '/resources/views'))
 app.set('view engine', 'ejs')
 
-// web js routes
-require('./routes/web')(app);
+require('./routes/web')(app)
 
-app.listen(PORT, () => {
-    console.log(`app deployed on port ${PORT}`);
+app.listen(PORT , () => {
+    console.log(`Listening on port ${PORT}`)
 })

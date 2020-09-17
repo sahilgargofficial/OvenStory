@@ -311,11 +311,10 @@ body {
 
 nav li:last-child a {
   background: #FE5F1E;
-  color: #fff;
 }
 
 nav li:last-child a:hover {
-  background: #B23301;
+  background: #b23301;
 }
 
 nav li a {
@@ -356,7 +355,7 @@ section.hero {
 }
 
 .btn-primary:hover {
-  background: #B23301;
+  background: #b23301;
 }
 
 section.cart {
@@ -377,25 +376,15 @@ section.login a {
 }
 
 section.login a:hover {
-  color: #B23301;
-}
-
-section.register {
-  background: #F8F8F8;
-  min-height: calc(100vh - 86px);
-}
-
-section.register a {
-  color: #FE5F1E;
-}
-
-section.register a:hover {
-  color: #B23301;
+  color: #b23301;
 }
 
 .noty_theme__mint {
   border-radius: 50px !important;
   padding-left: 8px !important;
-  text-transform: capitalize !important;
+}
+
+a.link {
+  color: #FE5F1E;
 }
 
